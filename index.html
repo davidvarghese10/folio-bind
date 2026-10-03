@@ -21,12 +21,21 @@
       </div>
     </div>
     <script>
-      // Detect if raw development index.html is accidentally served by static host without building
+      // If served directly from GitHub Pages root, automatically redirect to compiled /docs/
+      if (window.location.hostname.endsWith('github.io')) {
+        var path = window.location.pathname;
+        if (!path.endsWith('/docs/') && !path.endsWith('/docs')) {
+          var target = path.replace(/\/?$/, '/docs/');
+          window.location.replace(target);
+        }
+      }
+
+      // Fallback message if docs folder is missing or cannot load
       window.addEventListener('error', function(e) {
         if (e.target && e.target.tagName === 'SCRIPT' && e.target.src && e.target.src.indexOf('.tsx') !== -1) {
           var root = document.getElementById('root');
           if (root) {
-            root.innerHTML = '<div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #1E272E; color: #00CEC9; font-family: sans-serif; padding: 24px; text-align: center;"><h1 style="color: #00CEC9; font-size: 24px; margin-bottom: 8px;">FolioBind — GitHub Pages Setup</h1><p style="color: #F5F6FA; max-width: 540px; font-size: 14px; line-height: 1.6;">Your repository is serving uncompiled source files. In your repository <strong>Settings → Pages</strong>, change <strong>Source</strong> to <strong>GitHub Actions</strong> (or build with <code>npm run build</code> and choose the <code>/docs</code> folder).</p></div>';
+            root.innerHTML = '<div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #1E272E; color: #00CEC9; font-family: sans-serif; padding: 24px; text-align: center;"><h1 style="color: #00CEC9; font-size: 24px; margin-bottom: 8px;">FolioBind — GitHub Pages Setup</h1><p style="color: #F5F6FA; max-width: 540px; font-size: 14px; line-height: 1.6;">In your repository <strong>Settings → Pages</strong>, change the folder from <strong>/(root)</strong> to <strong>/docs</strong> (or change Source to <strong>GitHub Actions</strong>).</p></div>';
           }
         }
       }, true);
