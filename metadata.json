@@ -1,0 +1,6 @@
+{
+  "name": "FolioBind — Automatic PDF & DOCX Document Merger",
+  "description": "Upload multiple PDF and Word (.docx) documents to automatically merge, reorder, inspect, and download them as a single unified file.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

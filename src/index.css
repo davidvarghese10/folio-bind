@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --color-blue: #0984E3;
+    --color-dark: #1E272E;
+    --color-teal: #00CEC9;
+  }
+
+  ::selection {
+    background-color: #00CEC9;
+    color: #1E272E;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #1E272E;
+    color: #00CEC9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (pointer: fine) {
+    *,
+    *::before,
+    *::after {
+      cursor: none !important;
+    }
+  }
+}
+
+/* Constant dark blue hollow circle cursor: 21.28px diameter, 2.2px ring thickness */
+.custom-hollow-cursor-ring {
+  width: 21.28px;
+  height: 21.28px;
+  border: 2.2px solid #0984E3;
+  box-shadow: 0 0 0 1px #00CEC9;
+  border-radius: 9999px;
+  background-color: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.custom-hollow-cursor-ring.cursor-enlarged {
+  transform: translate(-50%, -50%) scale(1.55);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
