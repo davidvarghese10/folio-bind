@@ -57,7 +57,7 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
   const pageSizeOptions: { id: PageSizeStandard; label: string }[] = [
     { id: 'letter', label: 'Letter' },
     { id: 'a4', label: 'A4' },
-    { id: 'preserve', label: 'Native' },
+    { id: 'original', label: 'Native' },
   ];
   const activePageSizeIdx = Math.max(
     0,

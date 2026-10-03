@@ -11,7 +11,16 @@ import {
   AlertCircle,
 } from 'lucide-react';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+if (typeof window !== 'undefined') {
+  try {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+      pdfWorkerUrl,
+      document.baseURI || window.location.href
+    ).toString();
+  } catch {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+  }
+}
 
 interface PdfCanvasViewerProps {
   blob?: Blob;

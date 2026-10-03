@@ -193,7 +193,6 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
             {inspectedDoc.extension === 'pdf' ? (
               <PdfCanvasViewer
                 arrayBuffer={inspectedDoc.arrayBuffer}
-                blobUrl={inspectedDoc.pdfPreviewUrl}
                 filename={inspectedDoc.name}
               />
             ) : (

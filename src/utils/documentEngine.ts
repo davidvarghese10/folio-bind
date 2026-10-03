@@ -1529,7 +1529,7 @@ async function buildUnifiedPdf(
   await yieldToUi(16);
 
   const pdfBytes = await mergedPdf.save();
-  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  const blob = new Blob([pdfBytes as unknown as BlobPart], { type: 'application/pdf' });
   const blobUrl = URL.createObjectURL(blob);
   const durationMs = Math.max(12, Math.round(performance.now() - startTime));
 
