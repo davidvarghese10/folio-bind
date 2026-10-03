@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import {
   FileText,
   Eye,
   FileOutput,
+  Loader2,
 } from 'lucide-react';
 import {
   QueuedDocument,
   MergedArtifact,
   MergeConfiguration,
 } from '../types/document';
-import { PdfCanvasViewer } from './PdfCanvasViewer';
+
+const PdfCanvasViewer = lazy(() =>
+  import('./PdfCanvasViewer').then((m) => ({ default: m.PdfCanvasViewer }))
+);
 
 interface DocumentInspectorProps {
   mergedArtifact: MergedArtifact | null;
@@ -128,11 +132,20 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
 
               {/* Canvas PDF Preview or OpenXML Manifest Preview */}
               {mergedArtifact.format === 'pdf' ? (
-                <PdfCanvasViewer
-                  blob={mergedArtifact.blob}
-                  blobUrl={mergedArtifact.blobUrl}
-                  filename={mergedArtifact.filename}
-                />
+                <Suspense
+                  fallback={
+                    <div className="border-2 border-[#00CEC9] rounded-lg p-12 text-center flex flex-col items-center justify-center gap-2 bg-[#1E272E] text-[#00CEC9]">
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span className="text-xs font-mono-tabular">Loading PDF viewer...</span>
+                    </div>
+                  }
+                >
+                  <PdfCanvasViewer
+                    blob={mergedArtifact.blob}
+                    blobUrl={mergedArtifact.blobUrl}
+                    filename={mergedArtifact.filename}
+                  />
+                </Suspense>
               ) : (
                 <div className="border border-[#0984E3] rounded-lg p-5 bg-[#1E272E] space-y-3 text-[#00CEC9]">
                   <div className="flex items-center justify-between border-b border-[#00CEC9]/25 pb-3">
@@ -191,10 +204,19 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
             </div>
 
             {inspectedDoc.extension === 'pdf' ? (
-              <PdfCanvasViewer
-                arrayBuffer={inspectedDoc.arrayBuffer}
-                filename={inspectedDoc.name}
-              />
+              <Suspense
+                fallback={
+                  <div className="border-2 border-[#00CEC9] rounded-lg p-12 text-center flex flex-col items-center justify-center gap-2 bg-[#1E272E] text-[#00CEC9]">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span className="text-xs font-mono-tabular">Loading PDF viewer...</span>
+                  </div>
+                }
+              >
+                <PdfCanvasViewer
+                  arrayBuffer={inspectedDoc.arrayBuffer}
+                  filename={inspectedDoc.name}
+                />
+              </Suspense>
             ) : (
               <div className="border border-[#0984E3] rounded-lg p-5 bg-[#1E272E] space-y-4 max-h-[440px] overflow-y-auto text-[#00CEC9]">
                 {inspectedDoc.docxHeaders && inspectedDoc.docxHeaders.length > 0 && (

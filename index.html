@@ -13,8 +13,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="background-color: #1E272E; color: #00CEC9; margin: 0; min-height: 100vh;">
+    <div id="root">
+      <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #1E272E; color: #00CEC9; font-family: -apple-system, BlinkMacSystemFont, sans-serif; gap: 12px;">
+        <div style="font-size: 24px; font-weight: bold; letter-spacing: -0.5px;">FolioBind</div>
+        <div style="font-size: 13px; color: #0984E3; font-weight: 600;">Loading workspace...</div>
+      </div>
+    </div>
+    <script>
+      // Detect if raw development index.html is accidentally served by static host without building
+      window.addEventListener('error', function(e) {
+        if (e.target && e.target.tagName === 'SCRIPT' && e.target.src && e.target.src.indexOf('.tsx') !== -1) {
+          var root = document.getElementById('root');
+          if (root) {
+            root.innerHTML = '<div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #1E272E; color: #00CEC9; font-family: sans-serif; padding: 24px; text-align: center;"><h1 style="color: #00CEC9; font-size: 24px; margin-bottom: 8px;">FolioBind — GitHub Pages Setup</h1><p style="color: #F5F6FA; max-width: 540px; font-size: 14px; line-height: 1.6;">Your repository is serving uncompiled source files. In your repository <strong>Settings → Pages</strong>, change <strong>Source</strong> to <strong>GitHub Actions</strong> (or build with <code>npm run build</code> and choose the <code>/docs</code> folder).</p></div>';
+          }
+        }
+      }, true);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
