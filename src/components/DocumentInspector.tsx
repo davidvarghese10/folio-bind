@@ -35,11 +35,11 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
   const [viewMode, setViewMode] = useState<'merged' | 'source'>('merged');
 
   return (
-    <div className="bg-[#1E272E] border-2 border-[#00CEC9] rounded-xl flex flex-col overflow-hidden text-[#00CEC9]">
+    <div className="bg-[#1E272E]/40 backdrop-blur-md border-2 border-[#00CEC9] rounded-xl flex flex-col overflow-hidden text-[#00CEC9]">
       {/* Inspector Header */}
       <div className="px-6 py-4 border-b border-[#00CEC9]/25 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#1E272E] border border-[#0984E3] flex items-center justify-center text-[#00CEC9]">
+          <div className="w-8 h-8 rounded-lg bg-[#1E272E]/40 border border-[#0984E3] flex items-center justify-center text-[#00CEC9]">
             <Eye className="w-4 h-4" />
           </div>
           <div>
@@ -53,7 +53,7 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
         </div>
 
         {/* Animated 2-Tab Segmented View Toggle (Merged Output | Source File) */}
-        <div className="relative grid grid-cols-2 items-center p-1 bg-[#1E272E] border border-[#0984E3] rounded-lg w-60">
+        <div className="relative grid grid-cols-2 items-center p-1 bg-[#1E272E]/40 border border-[#0984E3] rounded-lg w-60">
           <div
             aria-hidden="true"
             className={`absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#00CEC9] border border-[#0984E3] rounded-md transition-transform duration-300 ease-out ${
@@ -87,7 +87,7 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
           mergedArtifact ? (
             <div className="space-y-5">
               {/* Quick Alternate Format Export Bar */}
-              <div className="bg-[#1E272E] border border-[#0984E3] rounded-lg p-3.5 flex flex-wrap items-center justify-between gap-3 text-[#00CEC9]">
+              <div className="bg-[#1E272E]/40 border border-[#0984E3] rounded-lg p-3.5 flex flex-wrap items-center justify-between gap-3 text-[#00CEC9]">
                 <div className="text-xs">
                   <span className="font-bold text-[#00CEC9]">
                     {mergedArtifact.filename}
@@ -109,21 +109,21 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
                   <button
                     type="button"
                     onClick={() => onDownloadAlternateFormat('pdf')}
-                    className="px-2.5 py-1 text-xs font-bold bg-[#1E272E] hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded transition-colors cursor-pointer"
+                    className="px-2.5 py-1 text-xs font-bold bg-[#1E272E]/40 hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded transition-colors cursor-pointer"
                   >
                     Export .PDF
                   </button>
                   <button
                     type="button"
                     onClick={() => onDownloadAlternateFormat('docx')}
-                    className="px-2.5 py-1 text-xs font-bold bg-[#1E272E] hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded transition-colors cursor-pointer"
+                    className="px-2.5 py-1 text-xs font-bold bg-[#1E272E]/40 hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded transition-colors cursor-pointer"
                   >
                     Export .DOCX
                   </button>
                   <button
                     type="button"
                     onClick={() => onDownloadAlternateFormat('pptx')}
-                    className="px-2.5 py-1 text-xs font-bold bg-[#1E272E] hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded transition-colors cursor-pointer"
+                    className="px-2.5 py-1 text-xs font-bold bg-[#1E272E]/40 hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded transition-colors cursor-pointer"
                   >
                     Export .PPTX
                   </button>

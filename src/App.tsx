@@ -36,6 +36,7 @@ import {
 } from './utils/documentEngine';
 import { DocumentInspector } from './components/DocumentInspector';
 import { MergeRulesPanel } from './components/MergeRulesPanel';
+import websiteBackground from './assets/images/website_background_1791040059725.jpg';
 
 const DEFAULT_CONFIG: MergeConfiguration = {
   outputFilename: 'Merged_Document',
@@ -435,7 +436,19 @@ export default function App() {
   const inspectedDoc = queuedDocs.find((d) => d.id === inspectedDocId) || queuedDocs[0] || null;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#1E272E] text-[#00CEC9]">
+    <div className="relative min-h-screen flex flex-col bg-[#1E272E] text-[#00CEC9]">
+      {/* Dynamic Background Image Layer - 30% Dimmer */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <img
+          src={websiteBackground}
+          alt=""
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center select-none opacity-80 brightness-95 saturate-100"
+        />
+        {/* Ambient overlay (45% dimming, 30% dimmer than previous 15%) */}
+        <div className="absolute inset-0 bg-[#1E272E]/45 backdrop-blur-[0.5px]" />
+      </div>
+
       {/* Constant Dark Blue Hollow Circle Cursor */}
       <div
         ref={cursorRef}
@@ -462,22 +475,22 @@ export default function App() {
         className="hidden"
       />
 
-      {/* Top Navigation Bar — FolioBind anchored at Top-Left Corner | Animated Sliding Tab Switcher */}
-      <header className="sticky top-0 z-30 w-full bg-[#1E272E] border-b-2 border-[#0984E3] px-5 py-3 text-[#00CEC9]">
+      {/* Top Navigation Bar — 60% Transparent with frosted glass */}
+      <header className="sticky top-0 z-30 w-full bg-[#1E272E]/40 backdrop-blur-md border-b-2 border-[#0984E3] px-5 py-3 text-[#00CEC9]">
         <div className="w-full flex items-center justify-between gap-4">
-          {/* Top-Left Corner: Brand Wordmark */}
+          {/* Top-Left Corner: Brand Wordmark in Poppins (thin, not bold) */}
           <button
             type="button"
             onClick={() => setActiveTab('merge')}
-            className="font-display text-2xl tracking-tight text-[#00CEC9] hover:text-[#0984E3] transition-colors cursor-pointer whitespace-nowrap shrink-0"
+            className="font-poppins font-light text-2xl tracking-wide text-[#00CEC9] hover:text-[#0984E3] transition-colors cursor-pointer whitespace-nowrap shrink-0"
           >
             FolioBind
           </button>
 
-          {/* Animated 2-Tab Switcher (Dark background in top-right bar with sliding indicator) */}
+          {/* Animated 2-Tab Switcher (60% transparent background in top-right bar with sliding indicator) */}
           <nav
             aria-label="Workspace views"
-            className="relative grid grid-cols-2 items-center p-1 bg-[#1E272E] border border-[#0984E3] rounded-lg w-56"
+            className="relative grid grid-cols-2 items-center p-1 bg-[#1E272E]/40 border border-[#0984E3] rounded-lg w-56 font-poppins"
           >
             {/* Sliding Indicator Box */}
             <div
@@ -490,7 +503,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setActiveTab('merge')}
-              className={`relative z-10 px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
+              className={`relative z-10 px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
                 activeTab === 'merge' ? 'text-[#1E272E]' : 'text-[#00CEC9]'
               }`}
             >
@@ -500,7 +513,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setActiveTab('advanced')}
-              className={`relative z-10 px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
+              className={`relative z-10 px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
                 activeTab === 'advanced' ? 'text-[#1E272E]' : 'text-[#00CEC9]'
               }`}
             >
@@ -512,18 +525,18 @@ export default function App() {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-6 py-8 space-y-6">
+      <main className="relative z-10 flex-1 max-w-4xl w-full mx-auto px-6 py-8 space-y-6">
         {activeTab === 'merge' ? (
           <>
-            {/* Focused Upload & Merge Header */}
+            {/* Focused Upload & Merge Header in Poppins (thin, not bold) */}
             <section className="text-center space-y-2">
-              <h1 className="font-display text-3xl sm:text-4xl text-[#00CEC9] tracking-tight">
+              <h1 className="font-poppins font-light text-3xl sm:text-4xl text-[#00CEC9] tracking-normal">
                 Upload PDF, DOCX, or PPTX files to merge automatically
               </h1>
-              <p className="text-sm text-[#00CEC9]/85 font-semibold max-w-xl mx-auto">
-                Select or drop two or more <span className="font-mono-tabular font-bold text-[#0984E3]">.pdf</span>
-                , <span className="font-mono-tabular font-bold text-[#0984E3]">.docx</span>, or{' '}
-                <span className="font-mono-tabular font-bold text-[#0984E3]">.pptx</span> files below.
+              <p className="text-sm text-[#00CEC9]/85 font-light max-w-xl mx-auto font-poppins">
+                Select or drop two or more <span className="font-mono-tabular font-medium text-[#0984E3]">.pdf</span>
+                , <span className="font-mono-tabular font-medium text-[#0984E3]">.docx</span>, or{' '}
+                <span className="font-mono-tabular font-medium text-[#0984E3]">.pptx</span> files below.
               </p>
             </section>
 
@@ -546,22 +559,22 @@ export default function App() {
                 className={`rounded-2xl border-2 border-dashed border-[#00CEC9] p-8 flex flex-col items-center justify-center text-center transition-colors cursor-pointer text-[#00CEC9] ${
                   isDragOver
                     ? 'bg-[#00CEC9] text-[#1E272E] border-[#1E272E]'
-                    : 'bg-[#1E272E] hover:border-[#00CEC9]'
+                    : 'bg-[#1E272E]/40 backdrop-blur-md hover:border-[#00CEC9]'
                 }`}
               >
                 <div className="w-14 h-14 rounded-2xl bg-[#00CEC9] border-2 border-[#0984E3] flex items-center justify-center mb-3 text-[#1E272E]">
                   <Upload className="w-6 h-6" />
                 </div>
 
-                <p className="text-base font-bold text-[#00CEC9]">
+                <p className="text-base font-light text-[#00CEC9] font-poppins">
                   {isIngesting
                     ? `Uploading & validating files (${uploadProgress.percent}%)...`
                     : 'Drop PDF, DOCX, or PPTX files here, or click to select'}
                 </p>
-                <p className="text-xs font-medium text-[#00CEC9]/85 mt-1">
-                  Only <span className="font-mono-tabular font-bold text-[#0984E3]">.pdf</span>,{' '}
-                  <span className="font-mono-tabular font-bold text-[#0984E3]">.docx</span>, and{' '}
-                  <span className="font-mono-tabular font-bold text-[#0984E3]">.pptx</span> formats are accepted
+                <p className="text-xs font-light text-[#00CEC9]/85 mt-1 font-poppins">
+                  Only <span className="font-mono-tabular font-medium text-[#0984E3]">.pdf</span>,{' '}
+                  <span className="font-mono-tabular font-medium text-[#0984E3]">.docx</span>, and{' '}
+                  <span className="font-mono-tabular font-medium text-[#0984E3]">.pptx</span> formats are accepted
                 </p>
 
                 <div className="mt-5" onClick={(e) => e.stopPropagation()}>
@@ -582,7 +595,7 @@ export default function App() {
               <section
                 role="alert"
                 aria-live="assertive"
-                className="bg-[#1E272E] border-2 border-[#00CEC9] rounded-xl p-5 text-[#00CEC9]"
+                className="bg-[#1E272E]/40 backdrop-blur-md border-2 border-[#00CEC9] rounded-xl p-5 text-[#00CEC9]"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-3">
@@ -628,7 +641,7 @@ export default function App() {
             {/* Real-Time Visual Progress Indicator (Upload Stage & Merge Stage) */}
             <section
               aria-label="Real-time upload and document merge progress"
-              className="bg-[#1E272E] border-2 border-[#00CEC9] rounded-xl p-5 grid grid-cols-1 md:grid-cols-2 gap-6 text-[#00CEC9]"
+              className="bg-[#1E272E]/40 backdrop-blur-md border-2 border-[#00CEC9] rounded-xl p-5 grid grid-cols-1 md:grid-cols-2 gap-6 text-[#00CEC9]"
             >
               {/* Stage 1: Upload Progress */}
               <div className="space-y-2">
@@ -707,7 +720,7 @@ export default function App() {
             </section>
 
             {/* Simple Merged Output & File Queue Card */}
-            <section className="bg-[#1E272E] border-2 border-[#00CEC9] rounded-xl p-6 space-y-5 text-[#00CEC9]">
+            <section className="bg-[#1E272E]/40 backdrop-blur-md border-2 border-[#00CEC9] rounded-xl p-6 space-y-5 text-[#00CEC9]">
               <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#00CEC9]/25">
                 <div>
                   <h2 className="text-base font-bold text-[#00CEC9]">
@@ -862,7 +875,7 @@ export default function App() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="font-display text-3xl text-[#00CEC9] tracking-tight">
+                <h1 className="font-poppins font-light text-3xl text-[#00CEC9] tracking-normal">
                   Advanced Merge Options &amp; Inspector
                 </h1>
                 <p className="text-xs text-[#00CEC9]/80 font-semibold mt-0.5">
@@ -872,14 +885,14 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setActiveTab('merge')}
-                className="px-3.5 py-2 text-xs font-bold bg-[#1E272E] hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border-2 border-[#00CEC9] rounded-lg transition-colors cursor-pointer"
+                className="px-3.5 py-2 text-xs font-bold bg-[#1E272E]/40 backdrop-blur-md hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border-2 border-[#00CEC9] rounded-lg transition-colors cursor-pointer"
               >
                 Back to Merge
               </button>
             </div>
 
             {bannerNotice && (
-              <div className="bg-[#1E272E] border-2 border-[#00CEC9] rounded-xl px-4 py-3 flex items-center justify-between gap-4 text-xs text-[#00CEC9]">
+              <div className="bg-[#1E272E]/40 backdrop-blur-md border-2 border-[#00CEC9] rounded-xl px-4 py-3 flex items-center justify-between gap-4 text-xs text-[#00CEC9]">
                 <span className="font-bold">{bannerNotice}</span>
                 <button
                   type="button"
@@ -912,7 +925,7 @@ export default function App() {
             />
 
             {/* Session Merge History */}
-            <section className="bg-[#1E272E] border-2 border-[#00CEC9] rounded-xl p-6 text-[#00CEC9]">
+            <section className="bg-[#1E272E]/40 backdrop-blur-md border-2 border-[#00CEC9] rounded-xl p-6 text-[#00CEC9]">
               <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#00CEC9]/25">
                 <div>
                   <h2 className="text-base font-bold text-[#00CEC9]">

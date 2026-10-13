@@ -87,10 +87,10 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
       : 'translate-x-[200%]';
 
   return (
-    <div className="bg-[#1E272E] border-2 border-[#00CEC9] rounded-xl p-6 space-y-6 text-[#00CEC9]">
+    <div className="bg-[#1E272E]/40 backdrop-blur-md border-2 border-[#00CEC9] rounded-xl p-6 space-y-6 text-[#00CEC9]">
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#00CEC9]/25">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#1E272E] border border-[#0984E3] flex items-center justify-center text-[#00CEC9]">
+          <div className="w-8 h-8 rounded-lg bg-[#1E272E]/40 border border-[#0984E3] flex items-center justify-center text-[#00CEC9]">
             <Settings2 className="w-4 h-4" />
           </div>
           <div>
@@ -106,7 +106,7 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
         <button
           type="button"
           onClick={onResetDefaults}
-          className="px-3 py-1.5 text-xs font-bold bg-[#1E272E] hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded-lg transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+          className="px-3 py-1.5 text-xs font-bold bg-[#1E272E]/40 hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded-lg transition-colors inline-flex items-center gap-1.5 cursor-pointer"
           title="Reset rules to default"
         >
           <RotateCcw className="w-3.5 h-3.5" />
@@ -130,7 +130,7 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
             value={config.outputFilename}
             onChange={(e) => updateField('outputFilename', e.target.value)}
             placeholder="Merged_Document"
-            className="w-full px-3 py-2 text-sm font-mono-tabular font-semibold bg-[#1E272E] border border-[#0984E3] rounded-lg text-[#00CEC9] placeholder:text-[#00CEC9]/50 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]"
+            className="w-full px-3 py-2 text-sm font-mono-tabular font-semibold bg-[#1E272E]/40 border border-[#0984E3] rounded-lg text-[#00CEC9] placeholder:text-[#00CEC9]/50 focus:outline-none focus:ring-2 focus:ring-[#00CEC9]"
           />
         </div>
 
@@ -139,7 +139,7 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
           <span className="block text-xs font-bold text-[#00CEC9] mb-1.5">
             Output Format
           </span>
-          <div className="relative grid grid-cols-4 items-center p-1 bg-[#1E272E] border border-[#0984E3] rounded-lg">
+          <div className="relative grid grid-cols-4 items-center p-1 bg-[#1E272E]/40 border border-[#0984E3] rounded-lg">
             <div
               aria-hidden="true"
               className={`absolute top-1 bottom-1 left-1 w-[calc(25%-2px)] bg-[#00CEC9] border border-[#0984E3] rounded-md transition-transform duration-300 ease-out ${formatTranslateClass}`}
@@ -167,7 +167,7 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
           <span className="block text-xs font-bold text-[#00CEC9] mb-1.5">
             Page Size (PDF / DOCX)
           </span>
-          <div className="relative grid grid-cols-3 items-center p-1 bg-[#1E272E] border border-[#0984E3] rounded-lg">
+          <div className="relative grid grid-cols-3 items-center p-1 bg-[#1E272E]/40 border border-[#0984E3] rounded-lg">
             <div
               aria-hidden="true"
               className={`absolute top-1 bottom-1 left-1 w-[calc((100%-8px)/3)] bg-[#00CEC9] border border-[#0984E3] rounded-md transition-transform duration-300 ease-out ${pageSizeTranslateClass}`}
@@ -195,7 +195,7 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
           <span className="block text-xs font-bold text-[#00CEC9] mb-1.5">
             Slide Aspect Ratio (PPTX)
           </span>
-          <div className="relative grid grid-cols-3 items-center p-1 bg-[#1E272E] border border-[#0984E3] rounded-lg">
+          <div className="relative grid grid-cols-3 items-center p-1 bg-[#1E272E]/40 border border-[#0984E3] rounded-lg">
             <div
               aria-hidden="true"
               className={`absolute top-1 bottom-1 left-1 w-[calc((100%-8px)/3)] bg-[#00CEC9] border border-[#0984E3] rounded-md transition-transform duration-300 ease-out ${slideRatioTranslateClass}`}
@@ -285,7 +285,7 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
             </p>
           </div>
 
-          <div className="divide-y divide-[#00CEC9]/20 border border-[#0984E3] rounded-lg bg-[#1E272E] text-[#00CEC9]">
+          <div className="divide-y divide-[#00CEC9]/20 border border-[#0984E3] rounded-lg bg-[#1E272E]/40 text-[#00CEC9]">
             {queuedDocs.map((doc, idx) => (
               <div
                 key={doc.id}
@@ -317,13 +317,13 @@ export const MergeRulesPanel: React.FC<MergeRulesPanelProps> = ({
                     onChange={(e) => onUpdatePageRange(doc.id, e.target.value)}
                     placeholder="All or 1-3"
                     aria-label={`Page or slide range for ${doc.name}`}
-                    className="w-28 px-2.5 py-1 text-xs font-mono-tabular font-bold bg-[#1E272E] border border-[#0984E3] rounded text-[#00CEC9]"
+                    className="w-28 px-2.5 py-1 text-xs font-mono-tabular font-bold bg-[#1E272E]/40 border border-[#0984E3] rounded text-[#00CEC9]"
                   />
 
                   <button
                     type="button"
                     onClick={() => onCycleRotation(doc.id)}
-                    className="px-2.5 py-1 text-xs font-mono-tabular font-bold bg-[#1E272E] hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded inline-flex items-center gap-1 transition-colors cursor-pointer"
+                    className="px-2.5 py-1 text-xs font-mono-tabular font-bold bg-[#1E272E]/40 hover:bg-[#00CEC9] text-[#00CEC9] hover:text-[#1E272E] border border-[#0984E3] rounded inline-flex items-center gap-1 transition-colors cursor-pointer"
                     title="Rotate pages 90°"
                   >
                     <RotateCw className="w-3 h-3" />
